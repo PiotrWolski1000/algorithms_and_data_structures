@@ -17,6 +17,10 @@ int iteration_power(int a, int pow){//a^pow
         return result * result;
     }
     else{
+        while(steps > 0){
+            result *= a;
+            steps--;
+        }
         return result * result * a;
     }
     return 0;
