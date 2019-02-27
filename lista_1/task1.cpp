@@ -26,9 +26,6 @@ int recursive_power(int a, int pow){//a^pow
     if(pow == 0){
         return 1;
     }
-    else if(pow == 1){
-        return a;
-    }
     else{
         if(pow % 2 == 0){
             return recursive_power(a * a, pow / 2);
