@@ -12,7 +12,7 @@ std::vector<int> get_from_file(const char * name_of_file)
 	std::fstream mFile(name_of_file, std::ios::in);
 	
     if (mFile.good()) {
-		std::cout << "Otworzono plik\n";
+		std::cout << "File opened\n";
 		std::string buffer;
 		while (std::getline(mFile, buffer))
 		{
@@ -72,7 +72,6 @@ int main()
 		std::cout << el << '\n';
 	}
 
-	cin.get();
 	return 0;
 }
 
