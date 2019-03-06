@@ -15,9 +15,11 @@ void przesuniecie(int t[], int k, const int n) {
 		int temp1;//buffor var
 		for (int i = 0; i < n; i++) {
 
-			temp1 = t[i];
-			t[i] = temp;
-			temp = temp1;
+
+			temp1 = t[i];//store value of cell inside of buffor var 
+			t[i] = temp;//store value inside current cell with next nth element of tab
+			temp = temp1;//changing temp var, which was current cell
+						// to "next time last" cell 
 		}
 	}
 	for (auto i = 0; i < n; i++) {
