@@ -10,6 +10,7 @@ void P(int k, int n, double p) {
 	for (int i = 1; i <= k; i++)
 	{
 		result2 *= n / i;
+
 		result += result2 * std::pow(p, i);
 		n--;
 	}
@@ -19,8 +20,8 @@ void P(int k, int n, double p) {
 
 int main()
 {
-	P(100, 10, 4.56);
-	cin.get ();
+	P(5, 2, 2);
+
 	return 0;
 }
 
