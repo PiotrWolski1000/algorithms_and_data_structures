@@ -18,7 +18,7 @@ int scalar(vector<int> & x, vector<int> & y) {
 }
 
 
-int polynomial_val(vector<int>& v, int x){
+int polynomial_val(vector<int>& v, int x){//count of multiplication: ((n+1)n)/2, which is O(n^2) (we coutn powers)
     int result = 0;
 
     for(int i = 0; i < v.size()-1;i++){
@@ -32,7 +32,7 @@ int polynomial_val(vector<int>& v, int x){
     return result;
 }
 
-int multiplicationTwoPolimonials(vector<int>& v1,  vector<int>& v2, int x) {
+int multiplicationTwoPolimonials(vector<int>& v1,  vector<int>& v2, int x) {//O(N^2)
 
     int row_value = 0;
     int value = 0;

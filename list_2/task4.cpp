@@ -10,7 +10,7 @@ void przesuniecie(int t[], int k, const int n) {
 
 	cout << '\n';
 
-	for (int j = 0; j < k; j++) {
+	for (int j = 0; j < k; j++) {//how many steps?
 		int temp = t[n - 1]; //starting fromlast one
 		int temp1;//buffor var
 		for (int i = 0; i < n; i++) {
@@ -32,7 +32,7 @@ void przesuniecie(int t[], int k, const int n) {
 int main(int argc, char *argv[]) {
 	
 	const int N = 10;
-	int k = 111;
+	int k = 2;
 	int tab[N] = { 1,2,3,4,5,6,7,8,9,10 };
 	
 	przesuniecie(tab, k, N);
