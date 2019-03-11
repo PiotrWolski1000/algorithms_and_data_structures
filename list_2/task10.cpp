@@ -18,76 +18,140 @@ struct lnode {
 
 class BST {
 
-    lnode* root;
+    
     
     public:
+    lnode* root;
     BST(int val){    
         root = new lnode(val);
         cout<<"Created BST tree with root = "<<root->val<<endl;
     }
-    void Print() {
-        lnode* temp = root;
 
-        while(temp != nullptr){
+    lnode* getRoot(){
+        return this->root;
+    }
+
+    // void Print() {
+    //     lnode* temp = root;
+
+    //     while(temp != nullptr){
             
-            cout << "my val: " << temp->val << endl;
+    //         cout << "my val: " << temp->val << endl;
 
 
-            if(temp->left != nullptr)
-                temp = temp->left;
-            else if(temp->right != nullptr){
-                temp = temp->right;
-            }
-        }
+    //         if(temp->left != nullptr)
+    //             temp = temp->left;
+    //         else if(temp->right != nullptr){
+    //             temp = temp->right;
+    //         }
+    //     }
 
-    }
+    // }
 
-    void Insert(int newVal){
-        lnode* temp = root;//we're operating on real root(we're passing an adresse to root object)
-        cout<<"inserting to bst.." <<endl;
-        int iter = 0;
-        while(temp){
-            // cout<<"Looper step nr:  "<<iter;
-            // if(newVal >= temp->val){//if new value is greater/equal from our temp node key
-            //     cout<<"is greater!" << endl;
-            //     if(temp->right)//check if right node exists, if yes, we change temp var to child node
-            //         temp = temp->right;
-            //     else{//if right child is empty we just set up a new node in here
-            //         temp->right = new lnode(newVal);
-            //         cout<<"created new node!"<<endl;
-            //     }
-            // } else{
-            //     cout<<"is less!" << endl;
+    // void Insert(int newVal){
+    //     lnode* temp = this->root;//we're operating on real root(we're passing an adresse to root object)
+    //     // cout<<"inserting to bst.." <<endl;
+    //     while(temp){
+    //         if(newVal<temp->val)
+	// 		    temp=temp->left;
+	// 	    else
+	// 		    temp=temp->right;
+    //     }
+    //     temp=new lnode(newVal);   
+    // }
 
-            //     if(temp->left)//check if left node is there, if yes, we change temp var to child node
-            //         temp = temp->left;
-            //     else{//if left child is empty we just set up a new node in here
-            //         temp->left = new lnode(newVal);
-            //         cout<<"created new node!"<<endl;
-            //     }
-            // }
-            // iter++;
-            if(newVal<temp->val)
-			    temp=temp->left;
-		    else
-			    temp=temp->right;
-
-        }
-        
-    }
 };
 
+void inorder(lnode *t){  // wypisanie kluczy w porządku "in order"
+    // lnode* temp = t;
+
+    if(t)
+    {
+        inorder(t->left);
+        cout<<t->val<<" ";
+        inorder(t->right);
+
+    }
+}   
+void insert(lnode *& t, int x) // wstawianie (nierekurencyjna)
+{
+	lnode **t1=&t;//first time is root of BST
+	while(*t1)
+		if(x<(*t1)->val)
+			t1=&((*t1)->left);
+		else
+			t1=&((*t1)->right);
+	*t1=new lnode(x);
+}  
+
+void remove(lnode *&t, int x)  // usuwanie elementu z drzewa (bez rekurencji)
+{
+	lnode **t1=&t;//wskaznik na wartosc adresu roota?
+	
+    //szukanie miejsca dla x
+    while (*t1 && (*t1)->val!=x)//czy nie null i wartosc != x(inna niz root(pozniej temp)
+	{
+		if(x<(*t1)->val) //mniejsze?
+			t1=&((*t1)->left); //zmieniamy temp na lewy node
+		else
+			t1=&((*t1)->right); //zmieniamy temo na prawy node
+	}
+	if(*t1)
+	{
+		if((*t1)->right && (*t1)->left)
+		{
+			lnode **t2=&((*t1)->right);
+			while ((*t2)->left)
+				t2=&((*t2)->left);
+			(*t1)->val=(*t2)->val;
+			t1=t2;
+		}	
+		if((*t1)->left==nullptr)
+		{
+			lnode *d=(*t1)->right;
+			delete *t1;
+			(*t1)=d;
+		}
+		else
+		{
+		    lnode *d=(*t1)->left;	
+			delete *t1;
+			(*t1)=d;
+		}
+	}
+}
+
+lnode* find(lnode* t,int x)  // wyszukiwanie klucza (bez rekurencji)
+{
+	while(t && t->val!=x)
+	{
+		if(x<t->val) 
+			t=t->left; 
+		else
+			t=t->right; 
+	}
+	return t;
+}
 
 int main(){
 
     cout << "Preparing BST.."<<endl;
-    BST myTree(5);//setting up BST tree with root as param
-    // myTree.Insert(10);
-    // myTree.Insert(12);
-    myTree.Insert(2);
-    // cout<<"BST tree prepared." <<endl;
-    // cout<<"printing our tree: ";
-    // myTree.Print();
-    // cout<<endl;
+    BST myTree(5);//setting up BST with root 
+    insert(myTree.root, 7);
+    insert(myTree.root, -2);
+    insert(myTree.root, 12);
+    insert(myTree.root, 6);
+ 
+    cout<<"bst tree: ", inorder(myTree.root);
+
+
+    cout<<endl<<"find 6: "<<find(myTree.root, 6)->val<<endl;
+
+    cout<<endl<<"removing node";
+    remove(myTree.root, -2);
+
+    cout<<endl<<"bst tree: ", inorder(myTree.root);
+
+
     return 0;
 }
