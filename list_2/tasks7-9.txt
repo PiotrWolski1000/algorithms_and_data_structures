@@ -1,0 +1,27 @@
+task7
+Glebokosc tego drzewa wynosi N.
+Podczas tworzenia zostalo wykonane N porownan, a jego zlozonosc to O(N).
+
+task8
+Zawsze ponad polowa wskaznikow left i right jest rowna null, poniewaz ostatnie elementy drzewa
+maja zawsze wskazniki rowne null. Mozna to zaobserwowac na prostym przykladzie.
+
+		5
+	       / \
+             null 8
+                 / \
+               null 9
+                   / \
+                 null null
+
+Widac tutaj, ze tylko dwa wskazniki wskazuja na jakies wartosci, jeden na 8, drugi na 9 . Natomiast reszta jest nullami.
+Wszystkich wskaznikow jest 8 z czego 6 to nulle , czyli wiekszosc.
+
+task9
+Wysokosc drzewa jest uzalezniona wzorem :
+	H = log2(N)
+Zatem ilosc wezlow mozna wyliczyc przeksztalcajac ten wzor w nastepujacy sposob:
+	N = 2^H
+Poniewaz kazdy wezel ma odnogi do dwoch nowych wezlow
+
+Jest to najwieksza ilosc wezlow jaka moze zawierac drzewo, natomiast najmniejsza ilosc to N=H.
