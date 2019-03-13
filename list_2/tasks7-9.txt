@@ -1,6 +1,6 @@
 task7
 Glebokosc tego drzewa wynosi N.
-Podczas tworzenia zostalo wykonane N porownan, a jego zlozonosc to O(N).
+Podczas tworzenia zostalo wykonane ((1+n)/2)*(n-1) porownan, a jego zlozonosc to O(N^2).
 
 task8
 Zawsze ponad polowa wskaznikow left i right jest rowna null, poniewaz ostatnie elementy drzewa
