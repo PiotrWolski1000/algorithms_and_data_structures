@@ -1,16 +1,15 @@
-#include<iostream> 
-using namespace std; 
-  
-/* Link list node */
-struct Node 
-{ 
-    int data; 
-    struct Node* next;
+#include <iostream>
 
-    Node (int data) 
+using namespace std;
+
+struct lnode { 
+    int data; 
+    struct lnode* next;
+
+    lnode (int data) 
     { 
         this->data = data; 
-        next = NULL; 
+        next = nullptr; 
     } 
 }; 
   
@@ -86,5 +85,24 @@ int main()
     return 0; 
 // 	Time Complexity: O(n)
 // Space Complexity: O(1)
-} 
+int main(){
+    mList l;
+    
+    l.push(5);
+    l.push(12);
+    l.push(1);
+    l.push(7);
+
+    cout << "length of an array: " << l.getSize() << endl;
+    cout << "list before sorting: " << endl;
+    l.display();
+
+    l.reverse();
+
+    cout << endl << "list after reversing: " << endl;
+    
+    l.display();
+    
+    return 0;
+}
 
