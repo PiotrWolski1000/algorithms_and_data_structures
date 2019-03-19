@@ -28,11 +28,11 @@ struct LinkedList
     { 
         // Initialize current, previous and 
         // next pointers 
-        Node *current = head; 
+        Node *current = head; //we start from the beggining of the list
         Node *prev = NULL, *next = NULL; 
   
   
-        while (current != NULL) 
+        while (current != NULL) //if not first?
         { 
             // Store next 
             next = current->next; 
@@ -58,7 +58,7 @@ struct LinkedList
         } 
     } 
   
-    void push(int data) 
+    void push(int data)//adding new element at front of our list 
     { 
         Node *temp = new Node(data); 
         temp->next = head; 
