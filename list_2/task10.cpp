@@ -89,30 +89,32 @@ void remove(lnode *&t, int x)  // usuwanie elementu z drzewa (bez rekurencji)
 	lnode **t1=&t;//wskaznik na wartosc adresu roota?
 	
     //szukanie miejsca dla x
-    while (*t1 && (*t1)->val!=x)//czy nie null i wartosc != x(inna niz root(pozniej temp)
+    while (*t1 && (*t1)->val!=x)//czy nie null i wartosc != x
 	{
 		if(x<(*t1)->val) //mniejsze?
 			t1=&((*t1)->left); //zmieniamy temp na lewy node
-		else
-			t1=&((*t1)->right); //zmieniamy temo na prawy node
+		else//a jesli wieksze to prawy node
+			t1=&((*t1)->right); //zmieniamy temp na prawy node
 	}
+
+    //gdy znalazlo/skonczylo szukac i istnieje(znalezlismy)
 	if(*t1)
 	{
-		if((*t1)->right && (*t1)->left)
+		if((*t1)->right && (*t1)->left)//kiedy ma dwojke dzieci
 		{
-			lnode **t2=&((*t1)->right);
+			lnode **t2=&((*t1)->right);//new temp 
 			while ((*t2)->left)
 				t2=&((*t2)->left);
 			(*t1)->val=(*t2)->val;
 			t1=t2;
 		}	
-		if((*t1)->left==nullptr)
+		if((*t1)->left==nullptr)//gdy tylko prawe
 		{
 			lnode *d=(*t1)->right;
 			delete *t1;
 			(*t1)=d;
 		}
-		else
+		else//gdy tylko lewe 
 		{
 		    lnode *d=(*t1)->left;	
 			delete *t1;
